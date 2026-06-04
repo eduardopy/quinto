@@ -4,25 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>QUINTO — Productora de cine publicitario</title>
-<meta name="description" content="Quinto es una productora de cine publicitario en Asunción, Paraguay. Hacemos films que se sienten. Lo Vi Todo — nuestro primer film para Volkswagen." />
-<link rel="icon" type="image/png" href="media/favicon.png" />
-<link rel="apple-touch-icon" href="media/favicon.png" />
-<meta name="theme-color" content="#0b0a09" />
-<!-- Open Graph -->
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Quinto" />
-<meta property="og:title" content="QUINTO — Productora de cine publicitario" />
-<meta property="og:description" content="Hacemos que la gente sienta. Cine publicitario desde Asunción, Paraguay." />
-<meta property="og:url" content="https://quinto.tv" />
-<meta property="og:image" content="https://quinto.tv/media/og-quinto.jpg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:locale" content="es_PY" />
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="QUINTO — Productora de cine publicitario" />
-<meta name="twitter:description" content="Hacemos que la gente sienta. Cine publicitario desde Asunción, Paraguay." />
-<meta name="twitter:image" content="https://quinto.tv/media/og-quinto.jpg" />
 <style>
 /* ============ BRAND FONTS ============ */
 @font-face{font-family:'Clemente';src:url('media/fonts/Clemente-Light.ttf') format('truetype');font-weight:300;font-style:normal;font-display:swap}
@@ -78,7 +59,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:1000;transition:background .4
 header.scrolled{background:rgba(11,10,9,.8);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:82px}
 .brand{display:flex;align-items:center;gap:.75rem}
-.brand img{height:40px;width:auto;object-fit:contain}
+.brand img{width:46px;height:46px;object-fit:contain}
 .brand .wm{font-family:var(--display);font-weight:800;letter-spacing:.03em;font-size:1.6rem;text-transform:uppercase}
 .nav-links{display:flex;align-items:center;gap:2.4rem}
 .nav-links a{font-family:var(--body);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bone-dim);transition:color .25s}
@@ -136,8 +117,7 @@ header.scrolled{background:rgba(11,10,9,.8);backdrop-filter:blur(14px);border-bo
 .feature-meta .label{color:rgba(236,230,214,.82);display:block;font-size:.72rem;line-height:2.1}
 
 /* ============ FILM BANNER ============ */
-.film-banner{position:relative;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:stretch;cursor:pointer;border:1px solid var(--line);margin-top:clamp(34px,5vh,58px)}
-@media(max-width:680px){.film-banner{aspect-ratio:4/5}}
+.film-banner{position:relative;overflow:hidden;min-height:74vh;display:flex;align-items:stretch;cursor:pointer;border:1px solid var(--line);margin-top:clamp(34px,5vh,58px)}
 .film-banner-bg{position:absolute;inset:0;background:#000}
 .film-banner-bg::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(11,10,9,.28) 0%,rgba(11,10,9,.08) 38%,rgba(11,10,9,.9) 100%),
@@ -213,7 +193,7 @@ header.scrolled{background:rgba(11,10,9,.8);backdrop-filter:blur(14px);border-bo
 /* footer */
 footer{border-top:1px solid var(--line);padding:34px 0 42px}
 .foot{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap}
-.foot .brand img{height:30px;width:auto;object-fit:contain}
+.foot .brand img{width:32px;height:32px;object-fit:contain}
 .foot .wm{font-family:var(--display);font-weight:800;font-size:1.1rem}
 .foot .label{font-size:.64rem}
 
@@ -259,29 +239,15 @@ body.cinematic.ready .hero h1{transition-delay:.12s}
 body.cinematic.ready .hero-row{transition-delay:.28s}
 body.cinematic.ready .scroll-cue{transition-delay:.5s}
 
-/* ============ TICKER ============ */
-.ticker{overflow:hidden;border-bottom:1px solid var(--line);background:var(--bg-2);padding:1.05rem 0}
-.ticker-track{display:flex;align-items:center;white-space:nowrap;width:max-content;animation:ticker 34s linear infinite;will-change:transform}
-.ticker:hover .ticker-track{animation-play-state:paused}
-.ticker .ti{font-family:var(--display);font-weight:800;font-size:clamp(1.1rem,2vw,1.55rem);letter-spacing:.01em;text-transform:uppercase;color:var(--bone);display:inline-flex;align-items:center}
-.ticker .ti.dim{color:var(--faint)}
-.ticker .ti::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin:0 clamp(1.1rem,2.4vw,2rem)}
-@keyframes ticker{to{transform:translateX(-50%)}}
-
-/* ============ CUSTOM CURSOR ============ */
-.cur-dot,.cur-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;mix-blend-mode:difference}
-.cur-dot{z-index:9601;width:7px;height:7px;background:#fff;transform:translate(-50%,-50%);transition:opacity .3s}
-.cur-ring{z-index:9600;width:34px;height:34px;border:1px solid rgba(255,255,255,.55);transform:translate(-50%,-50%);
-  transition:width .32s cubic-bezier(.16,1,.3,1),height .32s cubic-bezier(.16,1,.3,1),opacity .3s,border-color .3s,background .3s}
-.cur-ring.hover{width:56px;height:56px;border-color:#fff}
-.cur-ring.down{width:26px;height:26px}
-.cur-ring.film{width:104px;height:104px;background:var(--red);border-color:var(--red);mix-blend-mode:normal}
-.cur-label{position:fixed;top:0;left:0;z-index:9602;transform:translate(-50%,-50%);pointer-events:none;color:#fff;
-  font-family:var(--body);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;opacity:0;transition:opacity .25s;display:flex;align-items:center;gap:.4rem}
-.cur-label.on{opacity:1}
-.cur-label .tri{width:0;height:0;border-style:solid;border-width:4px 0 4px 7px;border-color:transparent transparent transparent #fff}
-body.cur-on,body.cur-on a,body.cur-on button,body.cur-on [role=button],body.cur-on .film-banner,body.cur-on .bts-grid figure{cursor:none}
-@media(hover:none){.cur-dot,.cur-ring,.cur-label{display:none!important}}
+/* custom play cursor */
+.film-cursor{position:fixed;top:0;left:0;z-index:9500;width:96px;height:96px;border-radius:50%;
+  background:var(--red);color:#fff;display:grid;place-items:center;pointer-events:none;
+  transform:translate(-50%,-50%) scale(0);opacity:0;
+  transition:transform .3s cubic-bezier(.16,1,.3,1),opacity .3s;will-change:transform,left,top}
+.film-cursor.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.film-cursor span{display:flex;align-items:center;gap:.45rem;font-family:var(--body);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase}
+.film-cursor .tri{width:0;height:0;border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent #fff}
+@media(hover:none){.film-cursor{display:none}}
 
 /* mobile nav */
 @media(max-width:760px){
@@ -309,18 +275,16 @@ body.cur-on,body.cur-on a,body.cur-on button,body.cur-on [role=button],body.cur-
     <div class="leader-ring"></div>
     <div class="leader-cross"></div>
     <div class="leader-num" id="leadNum">5</div>
-    <img class="leader-logo" id="leadLogo" src="media/quinto-5-trim.png" alt="" />
+    <img class="leader-logo" id="leadLogo" src="media/quinto-5.png" alt="" />
     <div class="leader-cap">Quinto — Asunción</div>
   </div>
 </div>
-<div class="cur-dot" id="curDot"></div>
-<div class="cur-ring" id="curRing"></div>
-<div class="cur-label" id="curLabel"><span class="tri"></span> Ver el film</div>
+<div class="film-cursor" id="filmCursor"><span><span class="tri"></span> Play</span></div>
 
 <header id="hdr">
   <div class="wrap nav">
     <a class="brand" href="#top" aria-label="Quinto inicio">
-      <img src="media/quinto-5-trim.png" alt="Quinto" />
+      <img src="media/quinto-5.png" alt="Quinto" />
       <span class="wm">Quinto</span>
     </a>
     <nav class="nav-links" id="navlinks">
@@ -356,12 +320,6 @@ body.cur-on,body.cur-on a,body.cur-on button,body.cur-on [role=button],body.cur-
     <div class="scroll-cue">Scroll</div>
   </section>
 
-
-  <!-- ================= TICKER ================= -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track"><span class="ti">Lo Vi Todo</span><span class="ti dim">VW Tera</span><span class="ti">Asunción · Paraguay</span><span class="ti dim">2026</span><span class="ti">Dirección + Producción</span><span class="ti dim">Cine que se siente</span><span class="ti">Lo Vi Todo</span><span class="ti dim">VW Tera</span><span class="ti">Asunción · Paraguay</span><span class="ti dim">2026</span><span class="ti">Dirección + Producción</span><span class="ti dim">Cine que se siente</span><span class="ti">Lo Vi Todo</span><span class="ti dim">VW Tera</span><span class="ti">Asunción · Paraguay</span><span class="ti dim">2026</span><span class="ti">Dirección + Producción</span><span class="ti dim">Cine que se siente</span><span class="ti">Lo Vi Todo</span><span class="ti dim">VW Tera</span><span class="ti">Asunción · Paraguay</span><span class="ti dim">2026</span><span class="ti">Dirección + Producción</span><span class="ti dim">Cine que se siente</span></div>
-  </div>
-
   <!-- ================= OBRA ================= -->
   <section class="obra" id="obra" data-screen-label="Obra">
     <div class="wrap">
@@ -393,7 +351,7 @@ body.cur-on,body.cur-on a,body.cur-on button,body.cur-on [role=button],body.cur-
     <!-- ================= CINEMATIC BREAK ================= -->
   <section class="cine-break" aria-hidden="true">
     <div class="cine-break-bg"><img src="media/photos/DSC06934.jpg" alt="" loading="lazy" /></div>
-    <div class="cine-break-mark"><img src="media/quinto-5-trim.png" alt="" /></div>
+    <div class="cine-break-mark"><img src="media/quinto-5.png" alt="" /></div>
   </section>
 
   <!-- ================= DETRÁS DE CÁMARA ================= -->
@@ -476,7 +434,7 @@ body.cur-on,body.cur-on a,body.cur-on button,body.cur-on [role=button],body.cur-
   <footer>
     <div class="wrap foot">
       <a class="brand" href="#top">
-        <img src="media/quinto-5-trim.png" alt="Quinto" />
+        <img src="media/quinto-5.png" alt="Quinto" />
         <span class="wm">Quinto</span>
       </a>
       <span class="label">© <span id="yr"></span> Quinto · Productora audiovisual</span>
@@ -532,8 +490,8 @@ body.cur-on,body.cur-on a,body.cur-on button,body.cur-on [role=button],body.cur-
 
   // lightbox
   var lb = document.getElementById('lb');
-  var openLb = function(){ if(!frame.getAttribute('src')) frame.src = frame.dataset.src; lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; };
-  var closeLb = function(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; frame.removeAttribute('src'); };
+  var openLb = function(){ if(!frame.src) frame.src = frame.dataset.src; lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; };
+  var closeLb = function(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; frame.src=''; };
   document.querySelectorAll('[data-lightbox]').forEach(function(el){
     el.addEventListener('click', openLb);
     el.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openLb(); } });
@@ -559,30 +517,13 @@ body.cur-on,body.cur-on a,body.cur-on button,body.cur-on [role=button],body.cur-
     },230);
   } else if(leader){ leader.parentNode.removeChild(leader); }
 
-  // custom cursor — dot + lerped ring, expands over interactive elements
-  if(window.matchMedia('(hover:hover)').matches && !reduce){
-    var dot=document.getElementById('curDot'), ring=document.getElementById('curRing'), clabel=document.getElementById('curLabel');
-    document.body.classList.add('cur-on');
-    var mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-    addEventListener('pointermove',function(e){
-      mx=e.clientX;my=e.clientY;
-      dot.style.left=mx+'px';dot.style.top=my+'px';
-      clabel.style.left=mx+'px';clabel.style.top=my+'px';
-    },{passive:true});
-    (function raf(){ rx+=(mx-rx)*0.2; ry+=(my-ry)*0.2; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(raf); })();
-    document.querySelectorAll('a,button,[role=button],.bts-grid figure').forEach(function(el){
-      el.addEventListener('pointerenter',function(){ ring.classList.add('hover'); });
-      el.addEventListener('pointerleave',function(){ ring.classList.remove('hover'); });
-    });
-    var fb=document.querySelector('.film-banner');
-    if(fb){
-      fb.addEventListener('pointerenter',function(){ ring.classList.add('film'); clabel.classList.add('on'); });
-      fb.addEventListener('pointerleave',function(){ ring.classList.remove('film'); clabel.classList.remove('on'); });
-    }
-    addEventListener('pointerdown',function(){ ring.classList.add('down'); });
-    addEventListener('pointerup',function(){ ring.classList.remove('down'); });
-    addEventListener('mouseout',function(e){ if(!e.relatedTarget){ dot.style.opacity=0; ring.style.opacity=0; } });
-    addEventListener('mouseover',function(){ dot.style.opacity=1; ring.style.opacity=1; });
+  // custom play cursor
+  var feat = document.querySelector('.film-banner');
+  if(feat && window.matchMedia('(hover:hover)').matches){
+    var fc = document.getElementById('filmCursor');
+    feat.addEventListener('pointerenter', function(){ fc.classList.add('on'); feat.style.cursor='none'; });
+    feat.addEventListener('pointerleave', function(){ fc.classList.remove('on'); feat.style.cursor=''; });
+    feat.addEventListener('pointermove', function(e){ fc.style.left=e.clientX+'px'; fc.style.top=e.clientY+'px'; });
   }
 
   // reveal

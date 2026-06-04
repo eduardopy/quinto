@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quinto Version Compare</title>
+<link rel="icon" type="image/png" href="media/favicon.png" />
+<style>
+:root{
+  --bg:#0b0a09;
+  --panel:#141210;
+  --line:rgba(236,230,214,.16);
+  --text:#ece6d6;
+  --muted:#aaa397;
+  --red:#e2231a;
+  --red-hi:#ff3b30;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
+}
+a{color:inherit}
+.shell{
+  min-height:100vh;
+  display:grid;
+  grid-template-rows:auto 1fr;
+}
+.topbar{
+  border-bottom:1px solid var(--line);
+  background:rgba(11,10,9,.94);
+  padding:16px clamp(16px,3vw,34px);
+}
+.brandline{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:14px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.brand img{
+  width:32px;
+  height:32px;
+  object-fit:contain;
+}
+.quick{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:flex-end;
+}
+.quick a,.open-link{
+  border:1px solid var(--line);
+  color:var(--text);
+  background:#171513;
+  text-decoration:none;
+  font-size:12px;
+  line-height:1;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:10px 12px;
+}
+.quick a:hover,.open-link:hover{
+  border-color:var(--red);
+  color:#fff;
+}
+.controls{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.control{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+label{
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+select{
+  min-width:0;
+  width:180px;
+  max-width:100%;
+  border:1px solid var(--line);
+  border-radius:0;
+  background:var(--panel);
+  color:var(--text);
+  font:inherit;
+  font-size:14px;
+  padding:9px 10px;
+}
+.preview-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:0;
+}
+.pane{
+  min-width:0;
+  min-height:0;
+  display:grid;
+  grid-template-rows:auto 1fr;
+  border-right:1px solid var(--line);
+}
+.pane:last-child{border-right:0}
+.pane-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  background:var(--panel);
+  border-bottom:1px solid var(--line);
+  padding:9px 12px;
+}
+.pane-title{
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  background:#fff;
+}
+@media(max-width:860px){
+  .brandline{align-items:flex-start;flex-direction:column}
+  .quick{justify-content:flex-start}
+  .controls{grid-template-columns:1fr}
+  .preview-grid{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
+  .pane{border-right:0;border-bottom:1px solid var(--line)}
+  .pane:last-child{border-bottom:0}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brandline">
+      <div class="brand">
+        <img src="media/favicon.png" alt="" />
+        <span>Quinto Versions</span>
+      </div>
+      <nav class="quick" aria-label="Version links">
+        <a href="v1.html">v1</a>
+        <a href="v2.html">v2</a>
+        <a href="v3.html">v3</a>
+        <a href="v4.html">v4</a>
+        <a href="Quinto.html">Latest</a>
+      </nav>
+    </div>
+    <div class="controls">
+      <div class="control">
+        <label for="leftSelect">Left</label>
+        <select id="leftSelect"></select>
+      </div>
+      <div class="control">
+        <label for="rightSelect">Right</label>
+        <select id="rightSelect"></select>
+      </div>
+    </div>
+  </header>
+  <main class="preview-grid">
+    <section class="pane">
+      <div class="pane-head">
+        <span class="pane-title" id="leftTitle">v3</span>
+        <a class="open-link" id="leftOpen" href="v3.html">Open</a>
+      </div>
+      <iframe id="leftFrame" src="v3.html" title="Left version preview"></iframe>
+    </section>
+    <section class="pane">
+      <div class="pane-head">
+        <span class="pane-title" id="rightTitle">v4</span>
+        <a class="open-link" id="rightOpen" href="v4.html">Open</a>
+      </div>
+      <iframe id="rightFrame" src="v4.html" title="Right version preview"></iframe>
+    </section>
+  </main>
+</div>
+<script>
+const versions = [
+  { id:'v1', label:'v1', href:'v1.html' },
+  { id:'v2', label:'v2', href:'v2.html' },
+  { id:'v3', label:'v3', href:'v3.html' },
+  { id:'v4', label:'v4', href:'v4.html' },
+  { id:'latest', label:'Latest', href:'Quinto.html' }
+];
+const byId = Object.fromEntries(versions.map(function(version){ return [version.id, version]; }));
+const params = new URLSearchParams(location.search);
+const leftSelect = document.getElementById('leftSelect');
+const rightSelect = document.getElementById('rightSelect');
+
+function fillSelect(select, fallback){
+  versions.forEach(function(version){
+    const option = document.createElement('option');
+    option.value = version.id;
+    option.textContent = version.label;
+    select.appendChild(option);
+  });
+  select.value = byId[fallback] ? fallback : 'v4';
+}
+
+function syncPane(side, id){
+  const version = byId[id] || byId.v4;
+  document.getElementById(side + 'Title').textContent = version.label;
+  document.getElementById(side + 'Open').href = version.href;
+  document.getElementById(side + 'Frame').src = version.href;
+}
+
+function syncUrl(){
+  const next = new URLSearchParams();
+  next.set('left', leftSelect.value);
+  next.set('right', rightSelect.value);
+  history.replaceState(null, '', '?' + next.toString());
+}
+
+fillSelect(leftSelect, params.get('left') || 'v3');
+fillSelect(rightSelect, params.get('right') || 'v4');
+syncPane('left', leftSelect.value);
+syncPane('right', rightSelect.value);
+leftSelect.addEventListener('change', function(){
+  syncPane('left', leftSelect.value);
+  syncUrl();
+});
+rightSelect.addEventListener('change', function(){
+  syncPane('right', rightSelect.value);
+  syncUrl();
+});
+</script>
+</body>
+</html>

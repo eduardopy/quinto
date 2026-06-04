@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>QUINTO — Productora de cine publicitario</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0a0a0b;
+  --bg-2:#111113;
+  --bg-3:#17171a;
+  --fg:#f3f1ec;
+  --muted:#8d8c90;
+  --faint:#5a5960;
+  --line:rgba(255,255,255,.10);
+  --red:#e30613;
+  --red-hi:#ff2532;
+  --maxw:1380px;
+  --gut:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:'Archivo',system-ui,sans-serif;
+  font-size:18px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+
+/* ---- type helpers ---- */
+.mono{font-family:'Space Mono',monospace;font-weight:400;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;color:var(--muted)}
+.display{font-weight:900;line-height:.92;letter-spacing:-.025em;text-transform:uppercase}
+.section-tag{display:flex;align-items:center;gap:.85rem;color:var(--muted)}
+.section-tag::before{content:"";width:38px;height:1px;background:var(--red)}
+.red{color:var(--red)}
+
+/* ---- layout ---- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
+section{position:relative}
+
+/* ---- grain + vignette overlays ---- */
+.grain{position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.045;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ============ NAV ============ */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;transition:background .4s ease,border-color .4s ease,backdrop-filter .4s}
+header.scrolled{background:rgba(10,10,11,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+.brand{display:flex;align-items:center;gap:.7rem}
+.brand img{width:30px;height:30px;object-fit:contain}
+.brand .wm{font-weight:900;letter-spacing:.34em;font-size:1.05rem;text-transform:uppercase;padding-left:.34em}
+.nav-links{display:flex;align-items:center;gap:2.2rem}
+.nav-links a{font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);transition:color .25s;position:relative}
+.nav-links a:hover{color:var(--fg)}
+.nav-links a.ig{color:var(--fg)}
+.nav-links a.ig:hover{color:var(--red)}
+.burger{display:none;flex-direction:column;gap:6px;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{width:26px;height:2px;background:var(--fg);transition:.3s}
+
+/* ============ HERO ============ */
+.hero{height:100svh;min-height:640px;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{transform:scale(1.08);animation:kb 22s ease-out forwards}
+@keyframes kb{to{transform:scale(1)}}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,10,11,.55) 0%,rgba(10,10,11,.15) 38%,rgba(10,10,11,.55) 72%,var(--bg) 100%),
+             radial-gradient(120% 80% at 50% 30%,transparent 40%,rgba(10,10,11,.6) 100%)}
+.hero-inner{position:relative;z-index:2;width:100%;padding-bottom:clamp(40px,7vh,86px)}
+.hero-kicker{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-bottom:1.6rem}
+.hero h1{font-size:clamp(2.7rem,8.4vw,8.2rem);font-weight:900;line-height:.9;letter-spacing:-.03em;text-transform:uppercase;max-width:14ch}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-top:2.4rem}
+.play-btn{display:inline-flex;align-items:center;gap:1rem;background:var(--red);color:#fff;border:0;cursor:pointer;
+  font-family:'Space Mono',monospace;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:1.05rem 1.7rem 1.05rem 1.4rem;transition:background .25s,transform .25s}
+.play-btn:hover{background:var(--red-hi);transform:translateY(-2px)}
+.play-btn .tri{width:0;height:0;border-style:solid;border-width:7px 0 7px 12px;border-color:transparent transparent transparent #fff}
+.hero-cap{max-width:30ch;color:var(--muted);font-size:.95rem;line-height:1.5}
+.hero-cap b{color:var(--fg);font-weight:600}
+.scroll-cue{position:absolute;bottom:26px;right:var(--gut);z-index:2;writing-mode:vertical-rl;font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--faint);display:flex;align-items:center;gap:.8rem}
+.scroll-cue::after{content:"";width:1px;height:46px;background:linear-gradient(var(--faint),transparent);animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.3;height:30px}50%{opacity:1;height:50px}}
+
+/* ============ OBRA ============ */
+.obra{padding:clamp(80px,12vh,150px) 0 clamp(60px,9vh,110px)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(34px,5vh,64px)}
+.sec-head h2{font-size:clamp(2rem,4.6vw,3.6rem);font-weight:900;letter-spacing:-.02em;text-transform:uppercase;line-height:.95}
+.sec-head .mono{margin-bottom:1rem}
+
+.feature{position:relative;cursor:pointer;overflow:hidden;border:1px solid var(--line)}
+.feature .ar{aspect-ratio:21/9}
+@media(max-width:680px){.feature .ar{aspect-ratio:4/3}}
+.feature img{transition:transform .9s cubic-bezier(.16,1,.3,1),filter .6s}
+.feature:hover img{transform:scale(1.04)}
+.feature::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,.25),rgba(10,10,11,.1) 45%,rgba(10,10,11,.85))}
+.feature-overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(22px,3.4vw,48px)}
+.feature-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.badge{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;border:1px solid rgba(255,255,255,.4);padding:.45rem .8rem;color:#fff}
+.feature-play{width:clamp(64px,8vw,104px);height:clamp(64px,8vw,104px);border-radius:50%;border:1.5px solid rgba(255,255,255,.7);display:grid;place-items:center;align-self:center;margin:auto;transition:background .3s,border-color .3s,transform .3s}
+.feature:hover .feature-play{background:var(--red);border-color:var(--red);transform:scale(1.06)}
+.feature-play .tri{width:0;height:0;border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent #fff;margin-left:5px}
+.feature-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:1.5rem;flex-wrap:wrap}
+.feature-title{font-size:clamp(2.4rem,7vw,6rem);font-weight:900;line-height:.86;letter-spacing:-.03em;text-transform:uppercase}
+.feature-meta{text-align:right}
+.feature-meta .mono{color:rgba(255,255,255,.85);display:block;font-size:.74rem;line-height:2}
+
+/* behind the scenes strip */
+.bts{margin-top:clamp(48px,7vh,90px)}
+.bts-head{display:flex;align-items:baseline;gap:1.2rem;margin-bottom:1.4rem;flex-wrap:wrap}
+.bts-head h3{font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.bts-head span{color:var(--faint);font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.12em}
+.bts-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.bts-grid figure{position:relative;overflow:hidden;background:var(--bg-2)}
+.bts-grid img{filter:saturate(.78) brightness(.82) contrast(1.05);transition:filter .6s,transform 1s cubic-bezier(.16,1,.3,1)}
+.bts-grid figure:hover img{filter:saturate(1.05) brightness(1) contrast(1.02);transform:scale(1.05)}
+.bts-grid figcaption{position:absolute;left:12px;bottom:10px;z-index:2;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92);opacity:0;transform:translateY(6px);transition:.4s}
+.bts-grid figure::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(10,10,11,.7));opacity:0;transition:.4s}
+.bts-grid figure:hover figcaption,.bts-grid figure:hover::after{opacity:1;transform:none}
+.bts-a{grid-column:span 3;aspect-ratio:16/9}
+.bts-b{grid-column:span 3;aspect-ratio:16/9}
+.bts-c{grid-column:span 2;aspect-ratio:4/5}
+.bts-d{grid-column:span 4;aspect-ratio:16/8}
+@media(max-width:760px){
+  .bts-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .bts-a,.bts-b,.bts-c,.bts-d{grid-column:span 1;aspect-ratio:4/3}
+}
+
+/* ============ ESTUDIO ============ */
+.estudio{padding:clamp(70px,11vh,140px) 0;border-top:1px solid var(--line);background:
+  linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%)}
+.est-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,5vw,80px);align-items:center}
+@media(max-width:880px){.est-grid{grid-template-columns:1fr;gap:40px}}
+.est-portrait{position:relative;overflow:hidden;aspect-ratio:4/5;border:1px solid var(--line)}
+.est-portrait img{filter:saturate(.85) contrast(1.05)}
+.est-portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,transparent 50%,rgba(227,6,19,.14))}
+.est-portrait .tag{position:absolute;left:0;bottom:0;background:var(--red);color:#fff;font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;padding:.6rem 1rem}
+.est-body h2{font-size:clamp(2rem,4.4vw,3.4rem);font-weight:900;letter-spacing:-.02em;line-height:1;text-transform:uppercase;margin:1.2rem 0 1.6rem}
+.est-body p{color:#cfcdc8;max-width:46ch;margin-bottom:1.15rem;font-size:1.02rem;line-height:1.62}
+.est-body p .lead{color:var(--fg)}
+.services{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.9rem}
+.services li{list-style:none;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:.5rem .8rem}
+
+/* ============ CONTACTO ============ */
+.contacto{padding:clamp(80px,13vh,170px) 0 0;border-top:1px solid var(--line)}
+.contacto .lead-mono{margin-bottom:1.8rem}
+.contacto h2{font-size:clamp(2.4rem,7vw,6.4rem);font-weight:900;letter-spacing:-.03em;line-height:.92;text-transform:uppercase;max-width:16ch}
+.contacto h2 a{color:var(--red);transition:color .25s}
+.contacto h2 a:hover{color:var(--red-hi)}
+.cta-row{display:flex;flex-wrap:wrap;gap:2.4rem 4rem;margin-top:clamp(40px,6vh,76px);padding-bottom:clamp(60px,9vh,110px)}
+.cta-item .mono{display:block;margin-bottom:.5rem;color:var(--faint)}
+.cta-item a,.cta-item span{font-size:1.15rem;font-weight:600;letter-spacing:-.01em}
+.cta-item a{transition:color .25s}
+.cta-item a:hover{color:var(--red)}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--line);padding:34px 0 40px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.foot .brand img{width:24px;height:24px;object-fit:contain}
+.foot .wm{font-weight:900;letter-spacing:.3em;font-size:.85rem}
+.foot .mono{font-size:.66rem}
+
+/* ============ LIGHTBOX ============ */
+.lb{position:fixed;inset:0;z-index:10000;background:rgba(5,5,6,.97);display:none;align-items:center;justify-content:center;padding:clamp(16px,4vw,56px)}
+.lb.open{display:flex;animation:fade .35s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.lb-frame{position:relative;width:100%;max-width:1280px;aspect-ratio:16/9;background:#000;border:1px solid var(--line)}
+.lb-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.lb-close{position:absolute;top:-46px;right:0;background:none;border:0;color:var(--fg);cursor:pointer;font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:.6rem}
+.lb-close:hover{color:var(--red)}
+.lb-close .x{font-size:1.3rem;line-height:1}
+@media(max-width:560px){.lb-close{top:-38px}}
+
+/* ---- reveal ---- */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+
+/* ============ FILM LEADER INTRO ============ */
+.leader{position:fixed;inset:0;z-index:11000;background:#060607;display:grid;place-items:center;overflow:hidden}
+.leader.hide{opacity:0;visibility:hidden;transition:opacity .7s ease,visibility .7s ease}
+.leader-stage{position:relative;width:min(56vmin,400px);aspect-ratio:1;display:grid;place-items:center}
+.leader-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,255,255,.12)}
+.leader-ring::after{content:"";position:absolute;inset:-1px;border-radius:50%;
+  background:conic-gradient(from -90deg,var(--red) 0deg,rgba(227,6,19,0) 64deg,rgba(227,6,19,0) 360deg);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 0);
+          mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 0);
+  animation:lead-sweep 1.15s linear infinite}
+@keyframes lead-sweep{to{transform:rotate(360deg)}}
+.leader-cross::before,.leader-cross::after{content:"";position:absolute;background:rgba(255,255,255,.10)}
+.leader-cross::before{left:50%;top:6%;bottom:6%;width:1px;transform:translateX(-.5px)}
+.leader-cross::after{top:50%;left:6%;right:6%;height:1px;transform:translateY(-.5px)}
+.leader-num{font-family:'Space Mono',monospace;font-weight:700;font-size:clamp(4rem,15vmin,9rem);line-height:1;color:var(--fg)}
+.leader-logo{position:absolute;width:38%;opacity:0;transform:scale(.7)}
+.leader-logo.on{opacity:1;transform:scale(1);transition:opacity .25s ease,transform .45s cubic-bezier(.16,1,.3,1)}
+.leader-cap{position:absolute;bottom:6%;left:0;right:0;text-align:center;font-family:'Space Mono',monospace;font-size:.64rem;letter-spacing:.34em;text-transform:uppercase;color:var(--faint)}
+
+/* ============ HERO INTRO STAGGER + VIDEO ============ */
+body.cinematic .hero-inner>*{opacity:0;transform:translateY(26px)}
+body.cinematic.ready .hero-inner>*{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+body.cinematic.ready .hero h1{transition-delay:.12s}
+body.cinematic.ready .hero-row{transition-delay:.28s}
+body.cinematic.ready .scroll-cue{transition-delay:.5s}
+.hero-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ============ CUSTOM PLAY CURSOR ============ */
+.film-cursor{position:fixed;top:0;left:0;z-index:9500;width:94px;height:94px;border-radius:50%;
+  background:var(--red);color:#fff;display:grid;place-items:center;pointer-events:none;
+  transform:translate(-50%,-50%) scale(0);opacity:0;
+  transition:transform .3s cubic-bezier(.16,1,.3,1),opacity .3s;will-change:transform,left,top}
+.film-cursor.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.film-cursor span{display:flex;align-items:center;gap:.45rem;font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase}
+.film-cursor .tri{width:0;height:0;border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent #fff}
+@media(hover:none){.film-cursor{display:none}}
+
+/* ---- mobile nav ---- */
+@media(max-width:760px){
+  .burger{display:flex}
+  .nav-links{position:fixed;inset:0;background:rgba(10,10,11,.97);backdrop-filter:blur(8px);flex-direction:column;justify-content:center;gap:2rem;transform:translateY(-100%);transition:transform .45s cubic-bezier(.16,1,.3,1);z-index:1100}
+  .nav-links.open{transform:none}
+  .nav-links a{font-size:1.1rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important}
+  .reveal{opacity:1;transform:none;transition:none}
+  .hero-bg img{transform:none}
+  .leader{display:none!important}
+  body.cinematic .hero-inner>*{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- film leader intro -->
+<div class="leader" id="leader" aria-hidden="true">
+  <div class="leader-stage">
+    <div class="leader-ring"></div>
+    <div class="leader-cross"></div>
+    <div class="leader-num" id="leadNum">5</div>
+    <img class="leader-logo" id="leadLogo" src="media/quinto-5.png" alt="" />
+    <div class="leader-cap">Quinto — Asunción</div>
+  </div>
+</div>
+<div class="film-cursor" id="filmCursor"><span><span class="tri"></span> Play</span></div>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Quinto inicio">
+      <img src="media/quinto-5.png" alt="Quinto" />
+      <span class="wm">Quinto</span>
+    </a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#obra">Obra</a>
+      <a href="#estudio">Estudio</a>
+      <a href="#contacto">Contacto</a>
+      <a class="ig" href="https://instagram.com/quinto.py" target="_blank" rel="noopener">@quinto.py</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" data-screen-label="Hero">
+    <div class="hero-bg">
+      <img src="media/celebracion.jpg" alt="Hinchas paraguayos celebrando durante el rodaje" />
+      <video id="heroVid" muted loop playsinline preload="none" poster="media/celebracion.jpg" style="display:none"></video>
+    </div>
+    <div class="wrap hero-inner">
+      <div class="hero-kicker">
+        <span class="mono">Productora de cine publicitario</span>
+        <span class="mono red">Asunción · Paraguay</span>
+      </div>
+      <h1>Hacemos que<br />la gente <em>sienta</em>.</h1>
+      <div class="hero-row">
+        <button class="play-btn" data-lightbox aria-label="Ver el film Lo Vi Todo">
+          <span class="tri"></span> Ver el film
+        </button>
+        <p class="hero-cap"><b>Lo Vi Todo</b> — el primer film de Quinto para Volkswagen. 90 segundos sobre lo que se siente en la tribuna.</p>
+      </div>
+    </div>
+    <div class="scroll-cue">Scroll</div>
+  </section>
+
+  <!-- ================= OBRA ================= -->
+  <section class="obra" id="obra" data-screen-label="Obra">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="section-tag mono">01 — Obra</div>
+          <h2 style="margin-top:1rem">El film</h2>
+        </div>
+        <p class="mono" style="max-width:24ch;text-align:left">Un debut. Una historia.<br/>Cero atajos.</p>
+      </div>
+
+      <div class="feature reveal" data-lightbox role="button" tabindex="0" aria-label="Reproducir Lo Vi Todo">
+        <div class="ar"><img src="media/monitor.jpg" alt="Monitor en cancha mostrando a los hinchas durante el rodaje" /></div>
+        <div class="feature-overlay">
+          <div class="feature-top">
+            <span class="badge">Cliente — Volkswagen</span>
+            <span class="badge">Comercial</span>
+          </div>
+          <div class="feature-play"><span class="tri"></span></div>
+          <div class="feature-bottom">
+            <div class="feature-title">Lo Vi<br/>Todo</div>
+            <div class="feature-meta">
+              <span class="mono">VW Tera · 2026</span>
+              <span class="mono">Dirección + Producción</span>
+              <span class="mono red">Ver el film ▸</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- behind the scenes -->
+      <div class="bts reveal">
+        <div class="bts-head">
+          <h3>Detrás de cámara</h3>
+          <span>Rodaje — Lo Vi Todo</span>
+        </div>
+        <div class="bts-grid">
+          <figure class="bts-a"><img src="media/direccion-auto.jpg" alt="Dirección sobre el vehículo VW Tera" /><figcaption>Set · VW Tera</figcaption></figure>
+          <figure class="bts-b"><img src="media/camara.jpg" alt="Cámara Sony rigueada sobre el auto" /><figcaption>Cámara · Sony FX6</figcaption></figure>
+          <figure class="bts-c"><img src="media/equipo.jpg" alt="Equipo de Quinto en el estadio" /><figcaption>Equipo · Estadio</figcaption></figure>
+          <figure class="bts-d"><img src="media/direccion-talento.jpg" alt="Dirección con el talento en cancha" /><figcaption>Dirección · Talento</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ESTUDIO ================= -->
+  <section class="estudio" id="estudio" data-screen-label="Estudio">
+    <div class="wrap est-grid">
+      <div class="est-portrait reveal">
+        <img src="media/direccion-talento.jpg" alt="Beto González dirigiendo en set" />
+        <span class="tag">Beto González · Director</span>
+      </div>
+      <div class="est-body reveal d1">
+        <div class="section-tag mono">02 — Estudio</div>
+        <h2>El que filma<br/>hasta que duele.</h2>
+        <p><span class="lead">Beto González dirige cada spot de treinta segundos como si fuera la escena final de una película que lleva veinte años escribiendo en su cabeza.</span></p>
+        <p>Criado entre videoclubes de barrio y canchas de tierra, abandonó la facultad de derecho el día que entendió que un travelling bien hecho convence más que cualquier alegato. Desde entonces rodó en estadios vacíos a las tres de la mañana, hizo llorar a más de un director de marketing y discutió la duración de un plano hasta que salió el sol.</p>
+        <p>Fundó <b>Quinto</b> con una sola regla: si no se siente en el estómago, se filma de nuevo.</p>
+        <ul class="services">
+          <li>Comerciales</li>
+          <li>Brand films</li>
+          <li>Dirección</li>
+          <li>Producción ejecutiva</li>
+          <li>Color</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACTO ================= -->
+  <section class="contacto" id="contacto" data-screen-label="Contacto">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="section-tag mono lead-mono">03 — Contacto</div>
+        <h2>¿Tenés una historia<br/>para <a href="mailto:beto@quinto.tv">contar?</a></h2>
+      </div>
+      <div class="cta-row reveal d1">
+        <div class="cta-item">
+          <span class="mono">Email</span>
+          <a href="mailto:beto@quinto.tv">beto@quinto.tv</a>
+        </div>
+        <div class="cta-item">
+          <span class="mono">Teléfono</span>
+          <a href="tel:+595000000000">+595 ___ ___ ___</a>
+        </div>
+        <div class="cta-item">
+          <span class="mono">Instagram</span>
+          <a href="https://instagram.com/quinto.py" target="_blank" rel="noopener">@quinto.py</a>
+        </div>
+        <div class="cta-item">
+          <span class="mono">Base</span>
+          <span>Asunción, Paraguay</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <a class="brand" href="#top">
+        <img src="media/quinto-5.png" alt="Quinto" />
+        <span class="wm">Quinto</span>
+      </a>
+      <span class="mono">© <span id="yr"></span> Quinto · Productora audiovisual</span>
+      <span class="mono">Sitio v1</span>
+    </div>
+  </footer>
+</main>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lb" id="lb" aria-hidden="true">
+  <div class="lb-frame">
+    <button class="lb-close" id="lbClose"><span class="x">✕</span> Cerrar</button>
+    <iframe id="lbFrame" src="" data-src="https://drive.google.com/file/d/1tjWogS1iK8Q3cG-up3UWI0dTn9gWb5l1/preview" allow="autoplay; fullscreen" allowfullscreen title="Lo Vi Todo — Quinto"></iframe>
+  </div>
+</div>
+
+<script>
+(function(){
+  // year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ===== CONFIG =====
+     Drop in a Vimeo background or a short muted MP4 loop here to make the
+     hero move. Leave "" to use the still image. The full film always stays
+     behind the "Ver el film" button below. */
+  var CONFIG = { heroVideo: "" };
+
+  // optional moving hero background
+  if(CONFIG.heroVideo){
+    var hv = document.getElementById('heroVid');
+    hv.src = CONFIG.heroVideo; hv.style.display = 'block';
+    if(hv.play){ var p = hv.play(); if(p && p.catch) p.catch(function(){}); }
+  }
+
+  // ---- film leader intro ----
+  var leader = document.getElementById('leader');
+  if(leader && !reduce && !sessionStorage.getItem('quinto_intro')){
+    document.body.classList.add('cinematic');
+    sessionStorage.setItem('quinto_intro','1');
+    var num = document.getElementById('leadNum');
+    var logo = document.getElementById('leadLogo');
+    var seq = ['5','4','3','2','1'], i = 0;
+    num.textContent = seq[0];
+    var tick = setInterval(function(){
+      i++;
+      if(i < seq.length){ num.textContent = seq[i]; return; }
+      clearInterval(tick);
+      num.style.display = 'none';
+      logo.classList.add('on');
+      setTimeout(function(){
+        leader.classList.add('hide');
+        document.body.classList.add('ready');
+        setTimeout(function(){ if(leader.parentNode) leader.parentNode.removeChild(leader); }, 760);
+      }, 470);
+    }, 230);
+  } else if(leader){
+    leader.parentNode.removeChild(leader);
+  }
+
+  // ---- custom play cursor over the film ----
+  var feat = document.querySelector('.feature');
+  if(feat && window.matchMedia('(hover:hover)').matches){
+    var fc = document.getElementById('filmCursor');
+    feat.addEventListener('pointerenter', function(){ fc.classList.add('on'); feat.style.cursor = 'none'; });
+    feat.addEventListener('pointerleave', function(){ fc.classList.remove('on'); feat.style.cursor = ''; });
+    feat.addEventListener('pointermove', function(e){ fc.style.left = e.clientX + 'px'; fc.style.top = e.clientY + 'px'; });
+  }
+
+  // header scroll state
+  var hdr = document.getElementById('hdr');
+  var onScroll = function(){ hdr.classList.toggle('scrolled', window.scrollY > 40); };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  // mobile nav
+  var burger = document.getElementById('burger');
+  var navlinks = document.getElementById('navlinks');
+  burger.addEventListener('click', function(){ navlinks.classList.toggle('open'); });
+  navlinks.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ navlinks.classList.remove('open'); }); });
+
+  // lightbox
+  var lb = document.getElementById('lb');
+  var frame = document.getElementById('lbFrame');
+  var openLb = function(){
+    if(!frame.src) frame.src = frame.dataset.src;
+    lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  };
+  var closeLb = function(){
+    lb.classList.remove('open'); lb.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    frame.src = ''; // stop playback
+  };
+  document.querySelectorAll('[data-lightbox]').forEach(function(el){
+    el.addEventListener('click', openLb);
+    el.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openLb(); } });
+  });
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  lb.addEventListener('click', function(e){ if(e.target===lb) closeLb(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && lb.classList.contains('open')) closeLb(); });
+
+  // reveal on scroll
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:.16, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
