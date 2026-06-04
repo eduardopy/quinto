@@ -11,6 +11,7 @@ Static website project for Quinto.
 - `v5`: latest exported HTML from `Quinto(2).html`.
 - `v6`: cleaned-up v5 export from `Quinto(4).html`.
 - `v7`: mobile-oriented export from `Downloads/quinto(1)/Quinto v2.html`.
+- `v7.5`: `v7` mobile/layout pass without the ticker, pull quote, or filmstrip section.
 
 Open `index.html` to compare versions, or `Quinto.html` to view the latest site.
 
