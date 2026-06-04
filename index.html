@@ -164,6 +164,7 @@ iframe{
         <a href="v4.html">v4</a>
         <a href="v5.html">v5</a>
         <a href="v6.html">v6</a>
+        <a href="v7.html">v7</a>
         <a href="Quinto.html">Latest</a>
       </nav>
     </div>
@@ -181,17 +182,17 @@ iframe{
   <main class="preview-grid">
     <section class="pane">
       <div class="pane-head">
-        <span class="pane-title" id="leftTitle">v5</span>
-        <a class="open-link" id="leftOpen" href="v5.html">Open</a>
+        <span class="pane-title" id="leftTitle">v6</span>
+        <a class="open-link" id="leftOpen" href="v6.html">Open</a>
       </div>
-      <iframe id="leftFrame" src="v5.html" title="Left version preview"></iframe>
+      <iframe id="leftFrame" src="v6.html" title="Left version preview"></iframe>
     </section>
     <section class="pane">
       <div class="pane-head">
-        <span class="pane-title" id="rightTitle">v6</span>
-        <a class="open-link" id="rightOpen" href="v6.html">Open</a>
+        <span class="pane-title" id="rightTitle">v7</span>
+        <a class="open-link" id="rightOpen" href="v7.html">Open</a>
       </div>
-      <iframe id="rightFrame" src="v6.html" title="Right version preview"></iframe>
+      <iframe id="rightFrame" src="v7.html" title="Right version preview"></iframe>
     </section>
   </main>
 </div>
@@ -202,6 +203,7 @@ const versions = [
   { id:'v4', label:'v4', href:'v4.html' },
   { id:'v5', label:'v5', href:'v5.html' },
   { id:'v6', label:'v6', href:'v6.html' },
+  { id:'v7', label:'v7', href:'v7.html' },
   { id:'latest', label:'Latest', href:'Quinto.html' }
 ];
 const byId = Object.fromEntries(versions.map(function(version){ return [version.id, version]; }));
@@ -233,8 +235,8 @@ function syncUrl(){
   history.replaceState(null, '', '?' + next.toString());
 }
 
-fillSelect(leftSelect, params.get('left') || 'v5');
-fillSelect(rightSelect, params.get('right') || 'v6');
+fillSelect(leftSelect, params.get('left') || 'v6');
+fillSelect(rightSelect, params.get('right') || 'v7');
 syncPane('left', leftSelect.value);
 syncPane('right', rightSelect.value);
 leftSelect.addEventListener('change', function(){
