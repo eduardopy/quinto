@@ -12,3 +12,8 @@ Static website project for Quinto.
 - `v6`: cleaned-up v5 export from `Quinto(4).html`.
 
 Open `index.html` to compare versions, or `Quinto.html` to view the latest site.
+
+## Assets
+
+- Original production photos stay in `media/photos/`.
+- Optimized WebP files for the live comparison versions stay in `media/optimized/`.
