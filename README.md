@@ -15,6 +15,8 @@ Static website project for Quinto.
 - `v8`: `v7.5` simplicity with a more intentional mobile image mosaic and crop pass.
 - `v8.5`: `v8` with quieter image overlays, tighter studio copy, and no placeholder phone.
 - `v8.6`: `v8.5` with the longer hero caption and desktop-only video metadata accents.
+- `v8.7`: imported review pass with refreshed production-house copy and contrast/OG refinements.
+- `v8.7+`: enhanced `v8.7` variant, added as a comparison option rather than replacing latest.
 
 Open `index.html` to compare versions, or `Quinto.html` to view the latest site.
 
