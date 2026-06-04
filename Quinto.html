@@ -59,7 +59,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:1000;transition:background .4
 header.scrolled{background:rgba(11,10,9,.8);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:82px}
 .brand{display:flex;align-items:center;gap:.75rem}
-.brand img{width:46px;height:46px;object-fit:contain}
+.brand img{height:40px;width:auto;object-fit:contain}
 .brand .wm{font-family:var(--display);font-weight:800;letter-spacing:.03em;font-size:1.6rem;text-transform:uppercase}
 .nav-links{display:flex;align-items:center;gap:2.4rem}
 .nav-links a{font-family:var(--body);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bone-dim);transition:color .25s}
@@ -117,7 +117,8 @@ header.scrolled{background:rgba(11,10,9,.8);backdrop-filter:blur(14px);border-bo
 .feature-meta .label{color:rgba(236,230,214,.82);display:block;font-size:.72rem;line-height:2.1}
 
 /* ============ FILM BANNER ============ */
-.film-banner{position:relative;overflow:hidden;min-height:74vh;display:flex;align-items:stretch;cursor:pointer;border:1px solid var(--line);margin-top:clamp(34px,5vh,58px)}
+.film-banner{position:relative;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:stretch;cursor:pointer;border:1px solid var(--line);margin-top:clamp(34px,5vh,58px)}
+@media(max-width:680px){.film-banner{aspect-ratio:4/5}}
 .film-banner-bg{position:absolute;inset:0;background:#000}
 .film-banner-bg::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(11,10,9,.28) 0%,rgba(11,10,9,.08) 38%,rgba(11,10,9,.9) 100%),
@@ -193,7 +194,7 @@ header.scrolled{background:rgba(11,10,9,.8);backdrop-filter:blur(14px);border-bo
 /* footer */
 footer{border-top:1px solid var(--line);padding:34px 0 42px}
 .foot{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap}
-.foot .brand img{width:32px;height:32px;object-fit:contain}
+.foot .brand img{height:30px;width:auto;object-fit:contain}
 .foot .wm{font-family:var(--display);font-weight:800;font-size:1.1rem}
 .foot .label{font-size:.64rem}
 
@@ -275,7 +276,7 @@ body.cinematic.ready .scroll-cue{transition-delay:.5s}
     <div class="leader-ring"></div>
     <div class="leader-cross"></div>
     <div class="leader-num" id="leadNum">5</div>
-    <img class="leader-logo" id="leadLogo" src="media/quinto-5.png" alt="" />
+    <img class="leader-logo" id="leadLogo" src="media/quinto-5-trim.png" alt="" />
     <div class="leader-cap">Quinto — Asunción</div>
   </div>
 </div>
@@ -284,7 +285,7 @@ body.cinematic.ready .scroll-cue{transition-delay:.5s}
 <header id="hdr">
   <div class="wrap nav">
     <a class="brand" href="#top" aria-label="Quinto inicio">
-      <img src="media/quinto-5.png" alt="Quinto" />
+      <img src="media/quinto-5-trim.png" alt="Quinto" />
       <span class="wm">Quinto</span>
     </a>
     <nav class="nav-links" id="navlinks">
@@ -351,7 +352,7 @@ body.cinematic.ready .scroll-cue{transition-delay:.5s}
     <!-- ================= CINEMATIC BREAK ================= -->
   <section class="cine-break" aria-hidden="true">
     <div class="cine-break-bg"><img src="media/photos/DSC06934.jpg" alt="" loading="lazy" /></div>
-    <div class="cine-break-mark"><img src="media/quinto-5.png" alt="" /></div>
+    <div class="cine-break-mark"><img src="media/quinto-5-trim.png" alt="" /></div>
   </section>
 
   <!-- ================= DETRÁS DE CÁMARA ================= -->
@@ -434,7 +435,7 @@ body.cinematic.ready .scroll-cue{transition-delay:.5s}
   <footer>
     <div class="wrap foot">
       <a class="brand" href="#top">
-        <img src="media/quinto-5.png" alt="Quinto" />
+        <img src="media/quinto-5-trim.png" alt="Quinto" />
         <span class="wm">Quinto</span>
       </a>
       <span class="label">© <span id="yr"></span> Quinto · Productora audiovisual</span>
