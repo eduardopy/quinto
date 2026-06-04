@@ -8,5 +8,6 @@ Static website project for Quinto.
 - `v2`: current site HTML in `Quinto.html`.
 - `v3`: handoff update using the trimmed Quinto logo asset.
 - `v4`: latest exported HTML from `Quinto(1).html`.
+- `v5`: latest exported HTML from `Quinto(2).html`.
 
 Open `index.html` to compare versions, or `Quinto.html` to view the latest site.

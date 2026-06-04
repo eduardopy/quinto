@@ -163,6 +163,7 @@ iframe{
         <a href="v2.html">v2</a>
         <a href="v3.html">v3</a>
         <a href="v4.html">v4</a>
+        <a href="v5.html">v5</a>
         <a href="Quinto.html">Latest</a>
       </nav>
     </div>
@@ -180,17 +181,17 @@ iframe{
   <main class="preview-grid">
     <section class="pane">
       <div class="pane-head">
-        <span class="pane-title" id="leftTitle">v3</span>
-        <a class="open-link" id="leftOpen" href="v3.html">Open</a>
+        <span class="pane-title" id="leftTitle">v4</span>
+        <a class="open-link" id="leftOpen" href="v4.html">Open</a>
       </div>
-      <iframe id="leftFrame" src="v3.html" title="Left version preview"></iframe>
+      <iframe id="leftFrame" src="v4.html" title="Left version preview"></iframe>
     </section>
     <section class="pane">
       <div class="pane-head">
-        <span class="pane-title" id="rightTitle">v4</span>
-        <a class="open-link" id="rightOpen" href="v4.html">Open</a>
+        <span class="pane-title" id="rightTitle">v5</span>
+        <a class="open-link" id="rightOpen" href="v5.html">Open</a>
       </div>
-      <iframe id="rightFrame" src="v4.html" title="Right version preview"></iframe>
+      <iframe id="rightFrame" src="v5.html" title="Right version preview"></iframe>
     </section>
   </main>
 </div>
@@ -200,6 +201,7 @@ const versions = [
   { id:'v2', label:'v2', href:'v2.html' },
   { id:'v3', label:'v3', href:'v3.html' },
   { id:'v4', label:'v4', href:'v4.html' },
+  { id:'v5', label:'v5', href:'v5.html' },
   { id:'latest', label:'Latest', href:'Quinto.html' }
 ];
 const byId = Object.fromEntries(versions.map(function(version){ return [version.id, version]; }));
@@ -214,7 +216,7 @@ function fillSelect(select, fallback){
     option.textContent = version.label;
     select.appendChild(option);
   });
-  select.value = byId[fallback] ? fallback : 'v4';
+  select.value = byId[fallback] ? fallback : 'v5';
 }
 
 function syncPane(side, id){
@@ -231,8 +233,8 @@ function syncUrl(){
   history.replaceState(null, '', '?' + next.toString());
 }
 
-fillSelect(leftSelect, params.get('left') || 'v3');
-fillSelect(rightSelect, params.get('right') || 'v4');
+fillSelect(leftSelect, params.get('left') || 'v4');
+fillSelect(rightSelect, params.get('right') || 'v5');
 syncPane('left', leftSelect.value);
 syncPane('right', rightSelect.value);
 leftSelect.addEventListener('change', function(){
