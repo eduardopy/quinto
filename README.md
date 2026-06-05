@@ -24,6 +24,10 @@ Static website project for Quinto.
 - `v8.14`: `v8.13` BTS gallery crop pass with the mounted camera made more prominent.
 - `v8.15`: `v8.14` with restrained Lemands accents, real Lemands Bold for the title accents, and a lighter Clemente hero headline.
 - `v8.16`: clean bundled export with Lemands-led display type, red logo assets, no tweak panel, and the film-button cursor fix.
+- `v8.17`: `v8.16` with a subtler count-up intro that resolves into the Quinto logo.
+- `v8.17 logo`: `v8.17` alternate with a logo-only intro and no countdown.
+- `v8.18 clean`: `v8.17` count-up without the slate/clapper styling.
+- `v8.18 clapper`: `v8.17` count-up with a larger clapper-board background and snap-to-logo moment.
 
 Open `index.html` or `Quinto.html` to view the live site. Open `compare.html` to compare versions.
 

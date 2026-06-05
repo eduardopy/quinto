@@ -399,7 +399,16 @@ footer{border-top:1px solid var(--line);padding:34px 0 42px}
 /* ============ FILM LEADER ============ */
 .leader{position:fixed;inset:0;z-index:11000;background:#070605;display:grid;place-items:center;overflow:hidden}
 .leader.hide{opacity:0;visibility:hidden;transition:opacity .7s ease,visibility .7s ease}
-.leader-stage{position:relative;width:min(56vmin,400px);aspect-ratio:1;display:grid;place-items:center}
+.leader-stage{position:relative;width:min(58vmin,420px);aspect-ratio:1;display:grid;place-items:center}
+.leader-clapper{position:absolute;width:min(68vmin,450px);aspect-ratio:1.32;opacity:.86;transform:translateY(-1%) rotate(-1.4deg);pointer-events:none;transition:opacity .24s ease,transform .38s cubic-bezier(.16,1,.3,1)}
+.leader-clapper-body{position:absolute;left:9%;right:9%;bottom:11%;height:58%;border:1px solid rgba(236,230,214,.58);background:linear-gradient(180deg,rgba(236,230,214,.09),rgba(236,230,214,.026));box-shadow:0 0 0 1px rgba(11,10,9,.52) inset,0 18px 50px rgba(0,0,0,.22)}
+.leader-clapper-body::before{content:"TAKE";position:absolute;top:10%;left:0;right:0;text-align:center;font-family:var(--mono);font-size:.52rem;letter-spacing:.32em;color:rgba(236,230,214,.64)}
+.leader-clapper-body::after{content:"";position:absolute;top:31%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(236,230,214,.42),transparent)}
+.leader-clapper-top{position:absolute;left:5%;right:5%;top:10%;height:27%;border:1px solid rgba(236,230,214,.62);transform-origin:11% 100%;transform:rotate(-10deg);background:repeating-linear-gradient(135deg,rgba(236,230,214,.52) 0 16px,rgba(236,230,214,.1) 16px 32px);box-shadow:0 0 0 1px rgba(11,10,9,.46) inset}
+.leader-clapper.snap{opacity:1;transform:translateY(-1%) rotate(0deg) scale(.97)}
+.leader-clapper.snap .leader-clapper-top{animation:clapper-snap .44s cubic-bezier(.18,1.4,.28,1) forwards}
+.leader-clapper.out{opacity:0;transform:translateY(-1%) rotate(0deg) scale(.9);transition:opacity .28s ease,transform .34s ease}
+@keyframes clapper-snap{0%{transform:rotate(-10deg)}55%{transform:rotate(6deg)}100%{transform:rotate(-1deg)}}
 .leader-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(236,230,214,.13)}
 .leader-ring::after{content:"";position:absolute;inset:-1px;border-radius:50%;
   background:conic-gradient(from -90deg,var(--red) 0deg,rgba(226,35,26,0) 64deg,rgba(226,35,26,0) 360deg);
@@ -407,10 +416,13 @@ footer{border-top:1px solid var(--line);padding:34px 0 42px}
           mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 0);
   animation:lead-sweep 1.15s linear infinite}
 @keyframes lead-sweep{to{transform:rotate(360deg)}}
-.leader-num{position:absolute;left:50%;top:50%;width:1.2em;text-align:center;font-family:'Clemente',Georgia,serif;font-variant-numeric:tabular-nums;font-weight:300;font-size:clamp(4.4rem,13vmin,7.4rem);line-height:.9;color:rgba(236,230,214,.9);letter-spacing:.015em;transform:translate(-50%,-50%);transition:opacity .22s ease,transform .22s ease}
-.leader-num.out{opacity:0;transform:translate(-50%,-50%) scale(.9)}
+.leader-cross::before,.leader-cross::after{content:"";position:absolute;background:rgba(236,230,214,.1)}
+.leader-cross::before{left:50%;top:6%;bottom:6%;width:1px;transform:translateX(-.5px)}
+.leader-cross::after{top:50%;left:6%;right:6%;height:1px;transform:translateY(-.5px)}
+.leader-num{position:absolute;left:50%;top:64%;width:1.35em;text-align:center;font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:400;font-size:clamp(3.4rem,11vmin,6rem);line-height:1;color:rgba(236,230,214,.98);letter-spacing:0;transform:translate(-50%,-50%);transition:opacity .2s ease,transform .2s ease}
+.leader-num.out{opacity:0;transform:translate(-50%,-50%) scale(.88)}
 .leader-logo{position:absolute;top:50%;left:50%;width:auto;height:48%;object-fit:contain;opacity:0;transform:translate(-50%,-50%) scale(.7)}
-.leader-logo.on{opacity:1;transform:translate(-50%,-50%) scale(1);transition:opacity .25s ease,transform .45s cubic-bezier(.16,1,.3,1)}
+.leader-logo.on{opacity:1;transform:translate(-50%,-50%) scale(1);transition:opacity .22s ease,transform .52s cubic-bezier(.16,1,.3,1)}
 .leader-cap{position:absolute;bottom:6%;left:0;right:0;text-align:center;font-family:var(--body);font-size:.62rem;letter-spacing:.36em;text-transform:uppercase;color:var(--faint)}
 
 /* hero stagger */
@@ -464,8 +476,14 @@ body.cur-on .film-banner .play-btn{cursor:pointer}
 <!-- ============ FILM LEADER INTRO ============ -->
 <div class="leader" id="leader" aria-hidden="true">
   <div class="leader-stage">
+    <div class="leader-clapper" id="leadClapper" aria-hidden="true">
+      <div class="leader-clapper-top"></div>
+      <div class="leader-clapper-body">
+        <div class="leader-num" id="leadNum">1</div>
+      </div>
+    </div>
     <div class="leader-ring"></div>
-    <div class="leader-num" id="leadNum">1</div>
+    <div class="leader-cross"></div>
     <img class="leader-logo" id="leadLogo" src="media/quinto-mark-red-hi.png" alt="" />
     <div class="leader-cap">Quinto · Producciones</div>
   </div>
@@ -800,16 +818,17 @@ body.cur-on .film-banner .play-btn{cursor:pointer}
   /* ---- film leader intro ---- */
   var leader = document.getElementById('leader');
   var replayIntro = new URLSearchParams(location.search).has('intro');
-  if(leader && !reduce && (replayIntro || !sessionStorage.getItem('quinto_intro818_clean'))){
+  if(leader && !reduce && (replayIntro || !sessionStorage.getItem('quinto_intro818_clapper'))){
     document.body.classList.add('cinematic');
-    if(!replayIntro) sessionStorage.setItem('quinto_intro818_clean','1');
-    var num=document.getElementById('leadNum'), logo=document.getElementById('leadLogo');
+    if(!replayIntro) sessionStorage.setItem('quinto_intro818_clapper','1');
+    var num=document.getElementById('leadNum'), logo=document.getElementById('leadLogo'), clapper=document.getElementById('leadClapper');
     var seq=['1','2','3','4'], i=0; num.textContent=seq[0];
     var tick=setInterval(function(){
       i++;
       if(i<seq.length){ num.textContent=seq[i]; return; }
       clearInterval(tick); num.classList.add('out');
-      setTimeout(function(){ num.style.display='none'; logo.classList.add('on'); },120);
+      if(clapper) clapper.classList.add('snap');
+      setTimeout(function(){ if(clapper) clapper.classList.add('out'); logo.classList.add('on'); },260);
       setTimeout(function(){
         leader.classList.add('hide'); document.body.classList.add('ready');
         setTimeout(function(){ if(leader.parentNode) leader.parentNode.removeChild(leader); },760);
