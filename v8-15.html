@@ -422,6 +422,8 @@ body.cinematic.ready .scroll-cue{transition-delay:.5s}
 .cur-label.on{opacity:1}
 .cur-label .tri{width:0;height:0;border-style:solid;border-width:4px 0 4px 7px;border-color:transparent transparent transparent #fff}
 body.cur-on,body.cur-on a,body.cur-on button,body.cur-on [role=button],body.cur-on .film-banner,body.cur-on .bts-grid figure{cursor:none}
+body.cur-on.cursor-native .cur-dot,body.cur-on.cursor-native .cur-ring,body.cur-on.cursor-native .cur-label{opacity:0!important}
+body.cur-on .film-banner .play-btn{cursor:pointer}
 
 /* mobile nav */
 @media(max-width:760px){
@@ -807,6 +809,21 @@ body.cur-on,body.cur-on a,body.cur-on button,body.cur-on [role=button],body.cur-
     if(fb){
       fb.addEventListener('pointerenter',function(){ ring.classList.add('film'); clabel.classList.add('on'); });
       fb.addEventListener('pointerleave',function(){ ring.classList.remove('film'); clabel.classList.remove('on'); });
+      fb.querySelectorAll('.play-btn').forEach(function(btn){
+        btn.addEventListener('pointerenter',function(){
+          document.body.classList.add('cursor-native');
+          ring.classList.remove('film');
+          clabel.classList.remove('on');
+        });
+        btn.addEventListener('pointerleave',function(){
+          document.body.classList.remove('cursor-native');
+          var under = document.elementFromPoint(mx,my);
+          if(under && fb.contains(under)){
+            ring.classList.add('film');
+            clabel.classList.add('on');
+          }
+        });
+      });
     }
     addEventListener('pointerdown',function(){ ring.classList.add('down'); });
     addEventListener('pointerup',function(){ ring.classList.remove('down'); });

@@ -23,8 +23,9 @@ Static website project for Quinto.
 - `v8.13`: `v8.12` typography correction: Avenir body text, Clemente display text, Lemands logo only.
 - `v8.14`: `v8.13` BTS gallery crop pass with the mounted camera made more prominent.
 - `v8.15`: `v8.14` with restrained Lemands accents, real Lemands Bold for the title accents, and a lighter Clemente hero headline.
+- `v8.16`: clean bundled export with Lemands-led display type, red logo assets, no tweak panel, and the film-button cursor fix.
 
-Open `index.html` to compare versions, or `Quinto.html` to view the latest site.
+Open `index.html` or `Quinto.html` to view the live site. Open `compare.html` to compare versions.
 
 ## Assets
 
