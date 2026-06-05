@@ -17,6 +17,8 @@ Static website project for Quinto.
 - `v8.6`: `v8.5` with the longer hero caption and desktop-only video metadata accents.
 - `v8.7`: imported review pass with refreshed production-house copy and contrast/OG refinements.
 - `v8.7+`: enhanced `v8.7` variant, added as a comparison option rather than replacing latest.
+- `v8.10`: newer enhanced export, imported from `Downloads/Quinto v8-10 enhanced(1).html`.
+- `v8.11`: latest enhanced export, imported from `Downloads/Quinto v8-11 enhanced.html`.
 
 Open `index.html` to compare versions, or `Quinto.html` to view the latest site.
 
