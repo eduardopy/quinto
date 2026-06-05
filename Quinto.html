@@ -207,6 +207,9 @@ header.scrolled{background:rgba(11,10,9,.82);backdrop-filter:blur(14px);border-b
 .film-badges{display:flex;gap:.7rem;flex-wrap:wrap}
 .badge{font-family:var(--body);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(236,230,214,.4);padding:.5rem .85rem;color:#fff}
 .film-meta{color:rgba(236,230,214,.7)}
+.film-credits{display:grid;gap:.34rem;text-align:right;line-height:1.15;color:rgba(236,230,214,.78);font-size:.66rem;letter-spacing:.11em;text-transform:none}
+.film-credits span{display:block}
+.film-credits b{color:var(--red);font-weight:400;letter-spacing:.18em}
 .film-title{font-family:var(--display);font-weight:800;font-size:clamp(3.6rem,12.5vw,11rem);line-height:.9;letter-spacing:-.015em;color:var(--bone);margin:auto 0 1.8rem}
 .film-title.lemand-title{font-family:var(--logo);font-weight:700;font-size:clamp(3.3rem,10.2vw,8.8rem);line-height:.9;letter-spacing:.025em;max-width:6.4ch}
 [data-lemands="off"] .film-title.lemand-title{font-family:var(--display);font-weight:800;font-size:clamp(3.6rem,12.5vw,11rem);letter-spacing:-.015em;max-width:none}
@@ -271,8 +274,11 @@ header.scrolled{background:rgba(11,10,9,.82);backdrop-filter:blur(14px);border-b
   .film-banner{aspect-ratio:4/4.7}
   .film-banner-inner{padding:22px}
   .film-banner-top{justify-content:flex-start}
-  .film-badges,.film-meta{display:none}
-  .film-banner-foot{display:block}
+  .film-badges{display:none}
+  .film-banner-foot{display:flex;flex-direction:column;align-items:flex-start;gap:.85rem}
+  .film-credits{display:grid;text-align:left;gap:.28rem;max-width:24ch;color:rgba(236,230,214,.78)}
+  .film-credits span{font-size:.58rem;letter-spacing:.1em;line-height:1.25}
+  .film-credits b{letter-spacing:.14em}
   .film-title{font-size:clamp(3.35rem,16vw,4.25rem);margin:auto 0 1.2rem;max-width:4.2ch}
   .film-title.lemand-title{font-size:clamp(2.9rem,14.5vw,3.95rem);max-width:6.4ch;letter-spacing:.02em}
   .film-banner-bg>img{object-position:50% center}
@@ -543,7 +549,10 @@ body.cur-on .film-banner .play-btn{cursor:pointer}
             <button class="play-btn" tabindex="-1" aria-label="Ver el film">
               <span class="tri"></span> Ver el film
             </button>
-            <span class="label film-meta">Una producci&oacute;n Quinto &middot; Asunci&oacute;n</span>
+            <span class="label film-meta film-credits" aria-label="Director Sebasti&aacute;n Arg&uuml;ello, Director de fotograf&iacute;a Diego Ben&iacute;tez">
+              <span><b>DIR:</b> Sebasti&aacute;n Arg&uuml;ello</span>
+              <span><b>DF:</b> Diego Ben&iacute;tez</span>
+            </span>
           </div>
         </div>
       </div>
