@@ -433,6 +433,7 @@ body.cinematic.ready .scroll-cue{transition-delay:.5s}
 .cur-label.on{opacity:1}
 .cur-label .tri{width:0;height:0;border-style:solid;border-width:4px 0 4px 7px;border-color:transparent transparent transparent #fff}
 body.cur-on,body.cur-on a,body.cur-on button,body.cur-on [role=button],body.cur-on .film-banner,body.cur-on .bts-grid figure{cursor:none}
+body.cur-on.cursor-film .cur-dot,body.cur-on:has(.cur-ring.film) .cur-dot{opacity:0!important}
 body.cur-on.cursor-native .cur-dot,body.cur-on.cursor-native .cur-ring,body.cur-on.cursor-native .cur-label{opacity:0!important}
 body.cur-on .film-banner .play-btn{cursor:pointer}
 
@@ -830,11 +831,12 @@ body.cur-on .film-banner .play-btn{cursor:pointer}
     });
     var fb=document.querySelector('.film-banner');
     if(fb){
-      fb.addEventListener('pointerenter',function(){ ring.classList.add('film'); clabel.classList.add('on'); });
-      fb.addEventListener('pointerleave',function(){ ring.classList.remove('film'); clabel.classList.remove('on'); });
+      fb.addEventListener('pointerenter',function(){ document.body.classList.add('cursor-film'); ring.classList.add('film'); clabel.classList.add('on'); });
+      fb.addEventListener('pointerleave',function(){ document.body.classList.remove('cursor-film'); ring.classList.remove('film'); clabel.classList.remove('on'); });
       fb.querySelectorAll('.play-btn').forEach(function(btn){
         btn.addEventListener('pointerenter',function(){
           document.body.classList.add('cursor-native');
+          document.body.classList.remove('cursor-film');
           ring.classList.remove('film');
           clabel.classList.remove('on');
         });
@@ -842,6 +844,7 @@ body.cur-on .film-banner .play-btn{cursor:pointer}
           document.body.classList.remove('cursor-native');
           var under = document.elementFromPoint(mx,my);
           if(under && fb.contains(under)){
+            document.body.classList.add('cursor-film');
             ring.classList.add('film');
             clabel.classList.add('on');
           }
