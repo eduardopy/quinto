@@ -20,6 +20,7 @@ Static website project for Quinto.
 - `v8.10`: newer enhanced export, imported from `Downloads/Quinto v8-10 enhanced(1).html`.
 - `v8.11`: latest enhanced export, imported from `Downloads/Quinto v8-11 enhanced.html`.
 - `v8.12`: client-requested text, typography, menu-close, and WhatsApp contact pass.
+- `v8.13`: `v8.12` typography correction: Avenir body text, Clemente display text, Lemands logo only.
 
 Open `index.html` to compare versions, or `Quinto.html` to view the latest site.
 
