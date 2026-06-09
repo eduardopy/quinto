@@ -14,14 +14,14 @@
 <meta property="og:title" content="QUINTO — Productora audiovisual" />
 <meta property="og:description" content="Hacemos que la gente sienta. Producción audiovisual desde Asunción, Paraguay." />
 <meta property="og:url" content="https://quinto.tv/" />
-<meta property="og:image" content="https://quinto.tv/media/og-quinto.jpg" />
+<meta property="og:image" content="https://quinto.tv/media/og-quinto-logo.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:locale" content="es_PY" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="QUINTO — Productora audiovisual" />
 <meta name="twitter:description" content="Hacemos que la gente sienta. Producción audiovisual desde Asunción, Paraguay." />
-<meta name="twitter:image" content="https://quinto.tv/media/og-quinto.jpg" />
+<meta name="twitter:image" content="https://quinto.tv/media/og-quinto-logo.jpg" />
 <style>
 /* ============ BRAND FONTS ============ */
 @font-face{font-family:'Clemente';src:url('media/fonts/Clemente-Light.ttf') format('truetype');font-weight:300;font-style:normal;font-display:swap}
@@ -85,8 +85,8 @@ section{position:relative}
 /* ============ ANIMATED GRAIN ============ */
 .grain{
   position:fixed;
-  inset:-100%;
-  width:300%;height:300%;
+  inset:-15%;
+  width:130%;height:130%;
   z-index:9000;pointer-events:none;
   opacity:.055;mix-blend-mode:screen;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -207,9 +207,6 @@ header.scrolled{background:rgba(11,10,9,.82);backdrop-filter:blur(14px);border-b
 .film-badges{display:flex;gap:.7rem;flex-wrap:wrap}
 .badge{font-family:var(--body);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(236,230,214,.4);padding:.5rem .85rem;color:#fff}
 .film-meta{color:rgba(236,230,214,.7)}
-.film-credits{display:grid;gap:.34rem;text-align:right;line-height:1.15;color:rgba(236,230,214,.78);font-size:.66rem;letter-spacing:.11em;text-transform:none}
-.film-credits span{display:block}
-.film-credits b{color:var(--red);font-weight:400;letter-spacing:.18em}
 .film-title{font-family:var(--display);font-weight:800;font-size:clamp(3.6rem,12.5vw,11rem);line-height:.9;letter-spacing:-.015em;color:var(--bone);margin:auto 0 1.8rem}
 .film-title.lemand-title{font-family:var(--logo);font-weight:700;font-size:clamp(3.3rem,10.2vw,8.8rem);line-height:.9;letter-spacing:.025em;max-width:6.4ch}
 [data-lemands="off"] .film-title.lemand-title{font-family:var(--display);font-weight:800;font-size:clamp(3.6rem,12.5vw,11rem);letter-spacing:-.015em;max-width:none}
@@ -276,9 +273,6 @@ header.scrolled{background:rgba(11,10,9,.82);backdrop-filter:blur(14px);border-b
   .film-banner-top{justify-content:flex-start}
   .film-badges{display:none}
   .film-banner-foot{display:flex;flex-direction:column;align-items:flex-start;gap:.85rem}
-  .film-credits{display:grid;text-align:left;gap:.28rem;max-width:24ch;color:rgba(236,230,214,.78)}
-  .film-credits span{font-size:.58rem;letter-spacing:.1em;line-height:1.25}
-  .film-credits b{letter-spacing:.14em}
   .film-title{font-size:clamp(3.35rem,16vw,4.25rem);margin:auto 0 1.2rem;max-width:4.2ch}
   .film-title.lemand-title{font-size:clamp(2.9rem,14.5vw,3.95rem);max-width:6.4ch;letter-spacing:.02em}
   .film-banner-bg>img{object-position:50% center}
@@ -504,7 +498,7 @@ body.cur-on .film-banner .play-btn{cursor:pointer}
       <a href="#obra">Obra</a>
       <a href="#estudio">Estudio</a>
       <a href="#contacto">Contacto</a>
-      <a class="ig" href="https://instagram.com/quinto.py" target="_blank" rel="noopener">@quinto.py</a>
+      <a class="ig" href="https://instagram.com/quinto.tv" target="_blank" rel="noopener">@quinto.tv</a>
     </nav>
     <button class="burger" id="burger" aria-label="Menú" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
   </div>
@@ -551,7 +545,7 @@ body.cur-on .film-banner .play-btn{cursor:pointer}
       <div class="film-banner reveal" data-lightbox role="button" tabindex="0" aria-label="Reproducir El Cartel">
         <div class="film-banner-bg">
           <img src="media/optimized/photos/DSC05601.webp" alt="Karmann Ghia y batucada frente al estadio Defensores del Chaco" loading="lazy" />
-          <iframe id="filmBg" src="" data-vimeo="1198266295" allow="autoplay" title="" aria-hidden="true"></iframe>
+          <iframe id="filmBg" src="" data-vimeo="1199432065" allow="autoplay" title="" aria-hidden="true"></iframe>
         </div>
         <div class="film-banner-inner">
           <div class="film-banner-top">
@@ -565,10 +559,7 @@ body.cur-on .film-banner .play-btn{cursor:pointer}
             <button class="play-btn" tabindex="-1" aria-label="Ver el film">
               <span class="tri"></span> Ver el film
             </button>
-            <span class="label film-meta film-credits" aria-label="Director Sebasti&aacute;n Arg&uuml;ello, Director de fotograf&iacute;a Diego Ben&iacute;tez">
-              <span><b>DIR:</b> Sebasti&aacute;n Arg&uuml;ello</span>
-              <span><b>DF:</b> Diego Ben&iacute;tez</span>
-            </span>
+            <span class="label film-meta">Una producci&oacute;n Quinto &middot; Asunci&oacute;n</span>
           </div>
         </div>
       </div>
@@ -686,7 +677,7 @@ body.cur-on .film-banner .play-btn{cursor:pointer}
         </div>
         <div class="cta-item">
           <span class="label">Instagram</span>
-          <a href="https://instagram.com/quinto.py" target="_blank" rel="noopener">@quinto.py</a>
+          <a href="https://instagram.com/quinto.tv" target="_blank" rel="noopener">@quinto.tv</a>
         </div>
         <div class="cta-item">
           <span class="label">Base</span>
@@ -728,7 +719,7 @@ body.cur-on .film-banner .play-btn{cursor:pointer}
       </div>
       <div class="lb-credits">
         <span>Volkswagen · 2026</span><br/>
-        <span>DIR: Sebastián Argüello · DF: Diego Benítez</span>
+        <span>Una producción Quinto · Asunción</span>
       </div>
       <button class="lb-close" id="lbClose" aria-label="Cerrar film"><span class="x">✕</span> Cerrar</button>
     </div>
@@ -739,7 +730,7 @@ body.cur-on .film-banner .play-btn{cursor:pointer}
           <span>Cargando film</span>
         </div>
       </div>
-      <iframe id="lbFrame" src="" data-src="https://player.vimeo.com/video/1198266295?title=0&byline=0&portrait=0&dnt=1&autoplay=1&autopause=1&playsinline=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="El Cartel — Quinto"></iframe>
+      <iframe id="lbFrame" src="" data-src="https://player.vimeo.com/video/1199432065?title=0&byline=0&portrait=0&dnt=1&autoplay=1&autopause=1&playsinline=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="El Cartel — Quinto"></iframe>
     </div>
   </div>
 </div>
@@ -756,7 +747,7 @@ body.cur-on .film-banner .play-btn{cursor:pointer}
   document.getElementById('yr').textContent = new Date().getFullYear();
 
   /* ---- CONFIG ---- */
-  var CONFIG = { filmEmbed: "https://player.vimeo.com/video/1198266295?title=0&byline=0&portrait=0&dnt=1&autoplay=1&autopause=1&playsinline=1" };
+  var CONFIG = { filmEmbed: "https://player.vimeo.com/video/1199432065?title=0&byline=0&portrait=0&dnt=1&autoplay=1&autopause=1&playsinline=1" };
   var frame = document.getElementById('lbFrame');
   if(CONFIG.filmEmbed) frame.dataset.src = CONFIG.filmEmbed;
 

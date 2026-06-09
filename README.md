@@ -28,6 +28,8 @@ Static website project for Quinto.
 - `v8.17 logo`: `v8.17` alternate with a logo-only intro and no countdown.
 - `v8.18 clean`: `v8.17` count-up without the slate/clapper styling.
 - `v8.18 clapper`: `v8.17` count-up with a larger clapper-board background and snap-to-logo moment.
+- `v8.19`: `v8.18 clean` promoted with Vimeo lifecycle controls and a larger screening-style lightbox.
+- `v8.20`: `v8.19` with the updated Vimeo film, `@quinto.tv` social links, new OG images, and the logo OG active.
 
 Open `index.html` or `Quinto.html` to view the live site. Open `compare.html` to compare versions.
 
